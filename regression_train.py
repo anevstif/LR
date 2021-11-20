@@ -67,6 +67,32 @@ class Log_reg(object):
         for i in range(1, 1000):
             self.theta = self.theta - 0.5 * self.gradient()
         self.result[:, k + 2] = self.theta[:, 0]
+      
+    
+    
+    def model_single(self, i):
+        return 1 / (1 + np.exp(np.negative(np.dot(self.X[i], self.theta))))
+    
+    def stochastic_gradient(self):
+        i = random(self.size_lines)
+        return 1  /  self.X[i].T.dot(self.model_singl(self, i) - self.Y[i])
+     
+    def gradient_descent(self, k):
+        for i in range(1, 10000):
+            self.theta = self.theta - 0.5 * self.stochastic_gradient()
+        self.result[:, k + 2] = self.theta[:, 0]
+    
+    
+   
+    def batch_gradient(self, j, size_batch):
+        for i in range(size_batch * j - 1, size_batch * j - 1 + size_batch)
+        return 1  /  self.X[i].T.dot(self.model_singl(self, i) - self.Y[i])
+    
+    def batch_descent(self, k, size_batch): ---     0 < size_batch < self.size_lines
+        for i in range(1, 1000):
+            j = random(self.size_lines div size_batch)  --индекс куска
+            self.theta = self.theta - 0.5 * self.batch_gradient(j, size_batch)
+        self.result[:, k + 2] = self.theta[:, 0]
 
 
 if __name__ == '__main__':
