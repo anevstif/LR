@@ -77,7 +77,7 @@ class Log_reg(object):
         i = random(self.size_lines)
         return 1  /  self.X[i].T.dot(self.model_singl(self, i) - self.Y[i])
      
-    def gradient_descent(self, k):
+    def stochastic_gradient_descent(self, k):
         for i in range(1, 10000):
             self.theta = self.theta - 0.5 * self.stochastic_gradient()
         self.result[:, k + 2] = self.theta[:, 0]
